@@ -1,18 +1,21 @@
-# python3
-
+from heapq import heappop, heappush, heapify
 from collections import namedtuple
 
 AssignedJob = namedtuple("AssignedJob", ["worker", "started_at"])
+FreeWorker = namedtuple("FreeWorker", ["time", "worker"])
 
 
 def assign_jobs(n_workers, jobs):
-    # TODO: replace this code with a faster algorithm.
     result = []
-    next_free_time = [0] * n_workers
+    queue = []
+    for i in range(n_workers):
+        queue.append(FreeWorker(0, i))
+    heapify(queue)
+
     for job in jobs:
-        next_worker = min(range(n_workers), key=lambda w: next_free_time[w])
-        result.append(AssignedJob(next_worker, next_free_time[next_worker]))
-        next_free_time[next_worker] += job
+        next_free_time, worker = heappop(queue)
+        result.append(AssignedJob(worker, next_free_time))
+        heappush(queue, FreeWorker(next_free_time + job, worker))
 
     return result
 

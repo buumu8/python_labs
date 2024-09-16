@@ -1,6 +1,39 @@
 # python3
 
 
+def parent(i):
+    return i // 2
+
+
+def left_child(i):
+    return 2 * i
+
+
+def right_child(i):
+    return 2 * i + 1
+
+
+def sift_up(data, i):
+    while i > 1 and data[parent(i)] > data[i]:
+        data[parent(i)], data[i] = data[i], data[parent(i)]
+        i = parent(i)
+
+
+def sift_down(data, i, swaps):
+    min_index = i
+    l, r = left_child(i), right_child(i)
+    if l < len(data) and data[l] < data[min_index]:
+        min_index = l
+
+    if r < len(data) and data[r] < data[min_index]:
+        min_index = r
+
+    if i != min_index:
+        data[i], data[min_index] = data[min_index], data[i]
+        swaps.append((i - 1, min_index - 1))
+        sift_down(data, min_index, swaps)
+
+
 def build_heap(data):
     """Build a heap from ``data`` inplace.
 
@@ -11,13 +44,15 @@ def build_heap(data):
     # of swaps. This turns the given array into a heap, but in the worst
     # case gives a quadratic number of swaps.
     #
-    # TODO: replace by a more efficient implementation
+    data_ = [0] * (len(data) + 1)
+    data_[1:] = data
+    n = len(data)
     swaps = []
-    for i in range(len(data)):
-        for j in range(i + 1, len(data)):
-            if data[i] > data[j]:
-                swaps.append((i, j))
-                data[i], data[j] = data[j], data[i]
+    for i in reversed(range(n // 2 + 1)):
+        if i == 0:
+            break
+        sift_down(data_, i, swaps)
+
     return swaps
 
 

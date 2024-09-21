@@ -82,5 +82,17 @@ def menuitems(request, dish):
     return HttpResponse(f"<h2> {dish} </h2>" + description)
 
 
+def about(request):
+    return HttpResponse("About us")
+
+
+def menu(request):
+    return HttpResponse("Menu for Littler Lemon")
+
+
+def book(request):
+    return HttpResponse("Make a booking")
+
+
 # source venv/Scripts/activate
 # python manage.py runserver

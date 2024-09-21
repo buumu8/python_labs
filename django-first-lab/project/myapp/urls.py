@@ -11,4 +11,7 @@ urlpatterns = [
     path("showform/", views.showform, name="showform"),
     path("getform/", views.getform, name="getform"),
     path("dishes/<str:dish>", views.menuitems),
+    path("menu/", views.menu, name="menu"),
+    path("about/", views.about, name="about"),
+    path("book/", views.book, name="book"),
 ]

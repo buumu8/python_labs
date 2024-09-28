@@ -32,3 +32,14 @@ class Menuitems(models.Model):
 class Drinks(models.Model):
     drink_name = models.CharField(max_length=200)
     price = models.IntegerField()
+
+
+class Customer(models.Model):
+    name = models.CharField(max_length=255)
+
+
+class Vehicle(models.Model):
+    nmae = models.CharField(max_length=255)
+    customer = models.ForeignKey(
+        Customer, on_delete=models.CASCADE, related_name="Vehicle"
+    )

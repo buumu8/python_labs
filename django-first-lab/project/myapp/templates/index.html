@@ -1,0 +1,11 @@
+<form action="" method="post" class="form">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="form-row form">
+        <div class="col-sm-4">
+            {{ form.n.errors }}
+            {{ form.n }}
+        </div>
+        <input class="btn btn-primary" type="submit" value="Submit" />
+    </div>
+</form>

@@ -1,17 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import DemoForm
+from myapp.forms import InputForm
 
 
 # Create your views here.
 def home(request):
-    if request.method == "POST":
-        form = DemoForm(request.POST)
-        if form.is_valid():
-            return HttpResponseRedirect("/thanks/")
-    else:
-        form = DemoForm()
-    return render(request, "index.html", {"form": form})
+    return HttpResponse("hello world")
+
+
+def form_view(request):
+    form = InputForm()
+    context = {"form": form}
+    return render(request, "home.html", context)
 
 
 def main(request):

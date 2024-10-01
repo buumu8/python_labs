@@ -56,3 +56,14 @@ class Booking(models.Model):
     guest_count = models.IntegerField()
     reservation_time = models.DateField(auto_now=True)
     comments = models.CharField(max_length=1000)
+
+
+class Reservation(models.Model):
+    name = models.CharField(max_length=100, blank=True)
+    contact = models.CharField("Phone numer", max_length=300)
+    time = models.TimeField()
+    count = models.IntegerField()
+    notes = models.CharField(max_length=300, blank=True)
+
+    def __str__(self):
+        return self.name

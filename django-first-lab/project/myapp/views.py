@@ -91,11 +91,13 @@ def menuitems(request, dish):
 
 
 def about(request):
-    return HttpResponse("About us")
+    about_content = {"about": "Based in Chicago"}
+    return render(request, "about.html", about_content)
 
 
 def menu(request):
-    return HttpResponse("Menu for Littler Lemon")
+    about_content = {"about": "Based in California"}
+    return render(request, "menu.html", {"content": about_content})
 
 
 def book(request):

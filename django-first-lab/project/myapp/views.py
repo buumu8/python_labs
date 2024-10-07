@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import DemoForm
 from myapp.forms import InputForm
+from .models import Menu
 
 
 # Create your views here.
@@ -96,12 +97,24 @@ def about(request):
 
 
 def menu(request):
-    about_content = {"about": "Based in California"}
-    return render(request, "menu.html", {"content": about_content})
+    newmenu = {
+        "mains": [
+            {"name": "falafel", "price": "12"},
+            {"name": "shawarama", "price": "15"},
+            {"name": "hummus", "price": 5},
+        ]
+    }
+    return render(request, "menu.html", newmenu)
 
 
 def book(request):
     return HttpResponse("Make a booking")
+
+
+def menu_by_id(request):
+    newmenu = Menu.objects.all()
+    newmenu_dict = {"menu": newmenu}
+    return render(request, "menu_card.html", newmenu_dict)
 
 
 # source venv/Scripts/activate

@@ -12,6 +12,7 @@ urlpatterns = [
     path("getform/", views.getform, name="getform"),
     path("dishes/<str:dish>", views.menuitems),
     path("menu/", views.menu, name="menu"),
+    path("menucard/", views.menu_by_id, name="menucard"),
     path("about/", views.about, name="about"),
     path("book/", views.book, name="book"),
     path("home/", views.form_view),

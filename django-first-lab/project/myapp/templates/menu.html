@@ -9,6 +9,13 @@
 
 <body>
     <h1 style="color: #495E57">Menu</h1>
+    {% if menu %}
+    {% for item in mains %}
+    <p>{{item.name}}: {{item.price}}</p>
+    {% endfor %}
+    {% else %}
+    <p> No items to display!</p>
+    {% endif %}
 </body>
 
 </html>

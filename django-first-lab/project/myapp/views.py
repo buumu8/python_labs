@@ -6,8 +6,6 @@ from .models import Menu
 
 
 # Create your views here.
-def home(request):
-    return HttpResponse("hello world")
 
 
 def form_view(request):
@@ -94,6 +92,10 @@ def menuitems(request, dish):
 def about(request):
     about_content = {"about": "Based in Chicago"}
     return render(request, "about.html", about_content)
+
+
+def home(request):
+    return render(request, "index.html")
 
 
 def menu(request):
